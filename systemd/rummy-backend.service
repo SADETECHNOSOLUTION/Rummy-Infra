@@ -1,0 +1,13 @@
+[Unit]
+Description=Rummy Backend
+After=network.target
+[Service]
+User=rummy
+WorkingDirectory=/opt/rummy
+EnvironmentFile=/etc/rummy/backend.env
+ExecStart=/usr/bin/java -jar /opt/rummy/app.jar
+Restart=always
+RestartSec=5
+SuccessExitStatus=143
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,14 @@
+services:
+  mongo:
+    image: mongo:7
+    ports: ["27017:27017"]
+    volumes: [mongo-data:/data/db]
+  backend:
+    build: ../../05-rummy-backend
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      MONGODB_URI: mongodb://mongo:27017/rummy
+      JWT_SECRET: dev-only-change-me-dev-only-change-me
+    ports: ["8080:8080"]
+    depends_on: [mongo]
+volumes: {mongo-data: {}}
